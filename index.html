@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="calc" data-type="norm">
+        <h1 class="opr" style="color:white;font-family:sans-serif;font-size:18px;font-weight:100;margin-left:10px;">
+        </h1>
+        <div class="io">
+            <input type="number" class="input" id="input-value" placeholder="00000">
+            <label class="from">From</label>
+            <br>
+            <br>
+            <select name="se-from" id="se-from">
+                <option value="d">Decimal</option>
+                <optgroup label="Length">
+                    <option value="fm" data-plus="-1">Femtometer</option>
+                    <option value="pm" data-plus="-1">Picometer</option>
+                    <option value="nm" data-plus="-1">Nanometer</option>
+                    <option value="μm" data-plus="-1">Micrometer</option>
+                    <option value="mm" data-plus="-1">Millimeter</option>
+                    <option value="cm" data-plus="-1">Centimeter</option>
+                    <option value="dm" data-plus="-1">Decimeter</option>
+
+                    <option value="m" data-plus="1">Meter</option>
+
+                    <option value="km" data-plus="1">Kilometer</option>
+                    <option value="Mm" data-plus="1">Megameter</option>
+                    <option value="Gm" data-plus="1">Gigameter</option>
+                    <option value="Tm" data-plus="1">Terameter</option>
+                </optgroup>
+                <optgroup label="Area (Square Units)">
+                    <option value="fmq" data-plus="-1">Femtometer²</option>
+                    <option value="pmq" data-plus="-1">Picometer²</option>
+                    <option value="nmq" data-plus="-1">Nanometer²</option>
+                    <option value="μmq" data-plus="-1">Micrometer²</option>
+                    <option value="mmq" data-plus="-1">Millimeter²</option>
+                    <option value="cmq" data-plus="-1">Centimeter²</option>
+                    <option value="dmq" data-plus="-1">Decimeter²</option>
+
+                    <option value="mq" data-plus="1">Meter²</option>
+
+                    <option value="kmq" data-plus="1">Kilometer²</option>
+                    <option value="Mmq" data-plus="1">Megameter²</option>
+                    <option value="Gmq" data-plus="1">Gigameter²</option>
+                    <option value="Tmq" data-plus="1">Terameter²</option>
+                </optgroup>
+                <optgroup label="Volume (Cubic Units)">
+                    <option value="fmc" data-plus="-1">Femtometer³</option>
+                    <option value="pmc" data-plus="-1">Picometer³</option>
+                    <option value="nmc" data-plus="-1">Nanometer³</option>
+                    <option value="μmc" data-plus="-1">Micrometer³</option>
+                    <option value="mmc" data-plus="-1">Millimeter³</option>
+                    <option value="cmc" data-plus="-1">Centimeter³</option>
+                    <option value="dmc" data-plus="-1">Decimeter³</option>
+
+                    <option value="mc" data-plus="1">Meter³</option>
+
+                    <option value="kmc" data-plus="1">Kilometer³</option>
+                    <option value="Mmc" data-plus="1">Megameter³</option>
+                    <option value="Gmc" data-plus="1">Gigameter³</option>
+                    <option value="Tmc" data-plus="1">Terameter³</option>
+                </optgroup>
+            </select>
+            <h1 class="output">00000</h1>
+            <label class="to">To</label>
+            <br>
+            <br>
+            <select name="se-to" id="se-to">
+                <option value="d">None</option>
+
+                <optgroup label="Length">
+                    <option value="fm" data-plus="-1">Femtometer</option>
+                    <option value="pm" data-plus="-1">Picometer</option>
+                    <option value="nm" data-plus="-1">Nanometer</option>
+                    <option value="μm" data-plus="-1">Micrometer</option>
+                    <option value="mm" data-plus="-1">Millimeter</option>
+                    <option value="cm" data-plus="-1">Centimeter</option>
+                    <option value="dm" data-plus="-1">Decimeter</option>
+
+                    <option value="m" data-plus="1">Meter</option>
+
+                    <option value="Km" data-plus="1">Kilometer</option>
+                    <option value="Mm" data-plus="1">Megameter</option>
+                    <option value="Gm" data-plus="1">Gigameter</option>
+                    <option value="Tm" data-plus="1">Terameter</option>
+                </optgroup>
+                <optgroup label="Area (Square Units)">
+                    <option value="fmq" data-plus="-1">Femtometer²</option>
+                    <option value="pmq" data-plus="-1">Picometer²</option>
+                    <option value="nmq" data-plus="-1">Nanometer²</option>
+                    <option value="μmq" data-plus="-1">Micrometer²</option>
+                    <option value="mmq" data-plus="-1">Millimeter²</option>
+                    <option value="cmq" data-plus="-1">Centimeter²</option>
+                    <option value="dmq" data-plus="-1">Decimeter²</option>
+
+                    <option value="mq" data-plus="1">Meter²</option>
+
+                    <option value="Kmq" data-plus="1">Kilometer²</option>
+                    <option value="Mmq" data-plus="1">Megameter²</option>
+                    <option value="Gmq" data-plus="1">Gigameter²</option>
+                    <option value="Tmq" data-plus="1">Terameter²</option>
+                </optgroup>
+                <optgroup label="Volume (Cubic Units)">
+                    <option value="fmc" data-plus="-1">Femtometer³</option>
+                    <option value="pmc" data-plus="-1">Picometer³</option>
+                    <option value="nmc" data-plus="-1">Nanometer³</option>
+                    <option value="μmc" data-plus="-1">Micrometer³</option>
+                    <option value="mmc" data-plus="-1">Millimeter³</option>
+                    <option value="cmc" data-plus="-1">Centimeter³</option>
+                    <option value="dmc" data-plus="-1">Decimeter³</option>
+
+                    <option value="mc" data-plus="1">Meter³</option>
+
+                    <option value="Kmc" data-plus="1">Kilometer³</option>
+                    <option value="Mmc" data-plus="1">Megameter³</option>
+                    <option value="Gmc" data-plus="1">Gigameter³</option>
+                    <option value="Tmc" data-plus="1">Terameter³</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="btns">
+            <div class="cont">
+                <button class="button-calc" id="1">1</button>
+                <button class="button-calc" id="2">2</button>
+                <button class="button-calc" id="3">3</button>
+                <button class="button-calc" id="4">4</button>
+                <button class="button-calc" id="5">5</button>
+                <button class="button-calc" id="backspace">←</button>
+
+            </div>
+            <div class="cont">
+
+                <button class="button-calc" id="6">6</button>
+
+                <button class="button-calc" id="7">7</button>
+                <button class="button-calc" id="8">8</button>
+                <button class="button-calc" id="9">9</button>
+                <button class="button-calc" id="0">0</button>
+                <button class="button-calc" id="clear" style="    padding: 37px;
+                padding-top: 43px;">CE</button>
+            </div>
+
+            <div class="cont">
+                <button class="button-calc" id="00">00</button>
+                <button class="button-calc" id="x" data-type="opreations">×</button>
+                <button class="button-calc" id="xs" data-type="opreations">÷</button>
+                <button class="button-calc" id="os" data-type="opreations">-</button>
+                <button class="button-calc" id="o" data-type="opreations">+</button>
+
+
+                <button class="button-calc" id="calc">=</button>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script>
+    let fs;
+    let op;
+    let chg;
+    let roleToMA = {
+        "fm": "z * 10 ** (15 * x)",
+        "pm": "z * 10 ** (12 * x)",
+        "nm": "z * 10 ** (9 * x)",
+        "μm": "z * 10 ** (6 * x)",
+        "mm": "z * 10 ** (3 * x)",
+        "cm": "z * 10 ** (2 * x)",
+        "dm": "z * 10 ** (1 * x)",
+
+        "m": "z * 1",
+
+        "Km": "z * 10 ** (3 * x)",
+        "Mm": "z * 10 ** (6 * x)",
+        "Gm": "z * 10 ** (9 * x)",
+        "Tm": "z * 10 ** (12 * x)",
+
+        "fmq": "z * 10 ** (30 * x)",
+        "pmq": "z * 10 ** (24 * x)",
+        "nmq": "z * 10 ** (18 * x)",
+        "μmq": "z * 10 ** (12 * x)",
+        "mmq": "z * 10 ** (6 * x)",
+        "cmq": "z * 10 ** (4 * x)",
+        "dmq": "z * 10 ** (2 * x)",
+
+        "mq": "1",
+        
+        "Kmq": "z * 10 ** (6 * x)",
+        "Mmq": "z * 10 ** (12 * x)",
+        "Gmq": "z * 10 ** (18 * x)",
+        "Tmq": "z * 10 ** (24 * x)",
+
+        "fmc": "z * 10 ** (15 * 3 * x)",
+        "pmc": "z * 10 ** (12 * 3 * x)",
+        "nmc": "z * 10 ** (9 * 3 * x)",
+        "μmc": "z * 10 ** (6 * 3 * x)",
+        "mmc": "z * 10 ** (3 * 3 * x)",
+        "cmc": "z * 10 ** (2 * 3 * x)",
+        "dmc": "z * 10 ** (3 * x)",
+        "mc": "z * 1",
+        "Kmc": "z * 10 ** (3 * 3 * x)",
+        "Mmc": "z * 10 ** (6 * 3 * x)",
+        "Gmc": "z * 10 ** (9 * 3 * x)",
+        "Tmc": "z * 10 ** (12 * 3 * x)",
+    }
+
+    $('#se-from').change(function () {
+        $('[data-type=opreations]').prop('disabled', true)
+
+        // API `x` is the definton of the from or to !
+        let z = $(this).val()
+        if (z !== 'Decimal') { $('.calc').data('type', 'unorm') }
+
+    })
+    $('.button-calc').click(function () {
+
+
+
+        if ($(this).attr("id") == 'calc') {
+            if ($('.calc').data('type') == 'norm') {
+                if (!op) {
+                    fs = $('.input').val()
+                    op = false
+                    $('.output').text($('.input').val())
+                } else {
+                    let ls = parseInt($('.input').val())
+                    let result;
+                    if (op == '-') { result = fs - ls }
+                    else if (op == '+') { result = fs + ls }
+                    else if (op == '/') { result = fs / ls }
+                    else if (op == '*') { result = fs * ls }
+                    $('.input').val('')
+                    $('.output').text(result)
+                    $('.opr').text('')
+                    op = false
+
+                }
+            }else{
+                let meter = ['m','mc','mq']
+                let from = $('#se-from').val()
+                chg = $('.input').val()
+                let to = $('#se-to').val()
+                let to_op1 = $('#se-to option:selected').data('plus')
+
+                let from_op = roleToMA[from].replace('x',parseInt($('#se-from option:selected').data('plus'))).replace('z',parseInt($('.input').val()))
+                console.log($('#se-from option:selected'))
+                console.log(to)
+                let to_op = roleToMA[to].replace('x',parseInt(to_op1) * -1).replace('z',eval(from_op))
+                let result = meter.includes(to) ? eval(from_op) : eval(to_op)
+                console.log(eval(to_op))
+                console.log(result);
+                $('.output').text(result)
+                
+            }
+        }
+
+
+        else if ($(this).attr("id") == 'o') {
+            if (!$('.input').val() == '') {
+                fs = parseInt($('.input').val().replace('+', ''), 10)
+                op = '+'
+                $('.input').val('')
+                $('.opr').text('Opreation +')
+
+            }
+        }
+        else if ($(this).attr('id') == 'ox') {
+            if (!$('.input').val() == '') {
+                fs = parseInt($('.input').val().replace('+', ''), 10)
+                op = '-'
+                $('.input').val('')
+                $('.opr').text('Opreation -')
+
+            }
+        }
+        else if ($(this).attr('id') == 'x') {
+            if (!$('.input').val() == '') {
+                fs = parseInt($('.input').val().replace('+', ''), 10)
+                op = '*'
+                $('.input').val('')
+                $('.opr').text('Opreation ×')
+
+            }
+        }
+        else if ($(this).attr('id') == 'xs') {
+            if (!$('.input').val() == '') {
+                fs = parseInt($('.input').val().replace('+', ''), 10)
+                op = '/'
+                $('.input').val('')
+                $('.opr').text('Opreation ÷')
+
+            }
+        }
+        else if ($(this).attr("id") == 'clear') {
+            $('.output').text('00000')
+            $('.input').val('')
+
+        }
+        else if ($(this).attr("id") == 'backspace') {
+            let nuz = $('.input').val().split('')
+            nuz.pop()
+            console.log(nuz)
+            $('.input').val(nuz.join(''))
+
+        }
+        else {
+            $('.input').val($('.input').val() + $(this).text())
+        }
+
+    })
+</script>
+
+</html>
