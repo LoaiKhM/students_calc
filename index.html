@@ -162,7 +162,13 @@
             </div>
 
         </div>
+        <div style="height:50px;color: white;font-size: 8px;font-family: sans-serif;display: flex;flex-direction:column;justify-content: center;align-items: center;">
+            <h1>Beta Version Powered By</h1>
+            <h1>Loai Maklad</h1>
+        </div>
+
     </div>
+
 </body>
 <script>
     let fs;
@@ -193,7 +199,7 @@
         "dmq": "z * 10 ** (2 * x)",
 
         "mq": "1",
-        
+
         "Kmq": "z * 10 ** (6 * x)",
         "Mmq": "z * 10 ** (12 * x)",
         "Gmq": "z * 10 ** (18 * x)",
@@ -244,22 +250,22 @@
                     op = false
 
                 }
-            }else{
-                let meter = ['m','mc','mq']
+            } else {
+                let meter = ['m', 'mc', 'mq']
                 let from = $('#se-from').val()
                 chg = $('.input').val()
                 let to = $('#se-to').val()
                 let to_op1 = $('#se-to option:selected').data('plus')
 
-                let from_op = roleToMA[from].replace('x',parseInt($('#se-from option:selected').data('plus'))).replace('z',parseInt($('.input').val()))
+                let from_op = roleToMA[from].replace('x', parseInt($('#se-from option:selected').data('plus'))).replace('z', parseInt($('.input').val()))
                 console.log($('#se-from option:selected'))
                 console.log(to)
-                let to_op = roleToMA[to].replace('x',parseInt(to_op1) * -1).replace('z',eval(from_op))
+                let to_op = roleToMA[to].replace('x', parseInt(to_op1) * -1).replace('z', eval(from_op))
                 let result = meter.includes(to) ? eval(from_op) : eval(to_op)
                 console.log(eval(to_op))
                 console.log(result);
                 $('.output').text(result)
-                
+
             }
         }
 
