@@ -14,15 +14,27 @@
 <body>
     <div class="calc" data-type="norm">
         <h1 class="opr" style="color:white;font-family:sans-serif;font-size:18px;font-weight:100;margin-left:10px;">
+            Null Opreation
         </h1>
+        <h1 class="cb"
+            style="position:fixed;right:10px;cursor:pointer;color:white;font-family:sans-serif;font-size:18px;font-weight:100;margin-left:10px;">
+            Clipboard
+        </h1>
+        <div class="allsc">
+            <div class="clip" style="color:rgba(255, 255, 255, 0.8);            ;display:flex;align-items: center;justify-content: center;">
+                <h1 class='noopyet' style="font-family:sans-serif;font-size:18px;">No Opreations Yet</h1>
+            </div>
+        </div>
         <div class="io">
             <input type="number" class="input" id="input-value" placeholder="00000">
             <label class="from">From</label>
             <br>
             <br>
             <select name="se-from" id="se-from">
-                <optgroup label="Decimal"><option value="d">Decimal</option></optgroup>
-                
+                <optgroup label="Decimal">
+                    <option value="d">Decimal</option>
+                </optgroup>
+
                 <optgroup label="Length">
                     <option value="fm" data-plus="-1">Femtometer</option>
                     <option value="pm" data-plus="-1">Picometer</option>
@@ -175,9 +187,25 @@
 
 </body>
 <script>
+    function add_clip(from,to,income,opr,income2,outcome)
+            {
+                $('.noopyet').remove()
+                $('.clip').css('display','block')
+                return`               <div class="calcuation">
+                    <div class="half1">
+                        <h6 class="from-tex">${from}</h6>
+                        <h6 class="to-tex">${to}</h6>
+                    </div>
+                    <div class="half2">
+                        <p class="in">${income} ${opr || ''} ${income2 || ''} = ${outcome}</p>
+                    </div>
+                </div>`;
+
+            }
     let fs;
     let op;
     let chg;
+    
     let roleToMA = {
         "fm": "z * 10 ** (15 * x)",
         "pm": "z * 10 ** (12 * x)",
@@ -222,7 +250,16 @@
         "Gmc": "z * 10 ** (9 * 3 * x)",
         "Tmc": "z * 10 ** (12 * 3 * x)",
     }
+    $(document).click(function(event){
+        console.log(event.target)
+        if(event.target !== $('.clip').toArray()[0] && event.target !== $('.cb').toArray()[0]){
+            $('.allsc').css('display','none')
 
+        }
+    })
+    $('.cb').click(function () {
+        $('.allsc').css('display', 'flex')
+    })
     $('#se-from').change(function () {
         let selex = $('#se-from option:selected').closest('optgroup').attr('label')
         $('[data-type=opreations]').prop('disabled', true)
@@ -244,6 +281,7 @@
                     fs = $('.input').val()
                     op = false
                     $('.output').text($('.input').val())
+                    $('.clip').append(add_clip('Decimal','None',fs,'+','0',fs))
                 } else {
                     let ls = parseInt($('.input').val())
                     let result;
@@ -251,9 +289,12 @@
                     else if (op == '+') { result = fs + ls }
                     else if (op == '/') { result = fs / ls }
                     else if (op == '*') { result = fs * ls }
+                    $('.clip').append(add_clip('Decimal','None',fs,op,$('.input').val(),result))
+
                     $('.input').val('')
                     $('.output').text(result)
-                    $('.opr').text('')
+                    $('.opr').text('Null Opreation')
+                    
                     op = false
 
                 }
@@ -272,6 +313,8 @@
                 console.log(eval(to_op))
                 console.log(result);
                 $('.output').html(result.toExponential(1))
+                add_clip()
+                $('.clip').append(add_clip(from,to,$('.input').val(),null,null,`${result.toExponential(1)}${to}`))
 
             }
         }
