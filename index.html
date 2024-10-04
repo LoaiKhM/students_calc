@@ -21,7 +21,8 @@
             <br>
             <br>
             <select name="se-from" id="se-from">
-                <option value="d">Decimal</option>
+                <optgroup label="Decimal"><option value="d">Decimal</option></optgroup>
+                
                 <optgroup label="Length">
                     <option value="fm" data-plus="-1">Femtometer</option>
                     <option value="pm" data-plus="-1">Picometer</option>
@@ -76,7 +77,9 @@
             <br>
             <br>
             <select name="se-to" id="se-to">
-                <option value="d">None</option>
+                <optgroup label="Decimal">
+                    <option value="d">None</option>
+                </optgroup>
 
                 <optgroup label="Length">
                     <option value="fm" data-plus="-1">Femtometer</option>
@@ -162,7 +165,8 @@
             </div>
 
         </div>
-        <div style="height:50px;color: white;font-size: 8px;font-family: sans-serif;display: flex;flex-direction:column;justify-content: center;align-items: center;">
+        <div
+            style="height:50px;color: white;font-size: 8px;font-family: sans-serif;display: flex;flex-direction:column;justify-content: center;align-items: center;">
             <h1>Beta Version Powered By</h1>
             <h1>Loai Maklad</h1>
         </div>
@@ -220,7 +224,10 @@
     }
 
     $('#se-from').change(function () {
+        let selex = $('#se-from option:selected').closest('optgroup').attr('label')
         $('[data-type=opreations]').prop('disabled', true)
+        $('#se-to').find('optgroup').hide()
+        $('#se-to').find(`optgroup[label="${selex}"]`).show()
 
         // API `x` is the definton of the from or to !
         let z = $(this).val()
@@ -264,7 +271,7 @@
                 let result = meter.includes(to) ? eval(from_op) : eval(to_op)
                 console.log(eval(to_op))
                 console.log(result);
-                $('.output').text(result)
+                $('.output').html(result.toExponential(1))
 
             }
         }
