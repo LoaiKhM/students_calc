@@ -275,7 +275,7 @@
     }
     $(document).click(function (event) {
         console.log(event.target)
-        if (event.target !== $('.clip').toArray()[0] && event.target !== $('.cb').toArray()[0]) {
+        if (event.target == $('.allsc').toArray()[0]) {
             $('.allsc').css('display', 'none')
 
         }
@@ -291,7 +291,8 @@
 
         // API `x` is the definton of the from or to !
         let z = $(this).val()
-        if (z !== 'Decimal') { $('.calc').data('type', 'unorm') }
+        console.log(z)
+        if (z !== 'd') { $('.calc').data('type', 'unorm') }else{ $('.calc').data('type', 'norm') }
 
     })
 
