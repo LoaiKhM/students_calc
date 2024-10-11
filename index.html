@@ -315,6 +315,7 @@
                 let from_op = eval(roleToMA[from].replace('x', parseInt($('#se-from option:selected').data('plus'))).replace('z', first))
                 let to_op = eval(roleToMA[to].replace('x', parseInt($('#se-to option:selected').data('plus'))).replace('z', from_op))
                 let result = from === 'd' ? first : to_op
+                console.error(result)
                 $('.output').text(parseFloat(result).toString().length <= 9 || !parseFloat(result).toString().includes('e') ?parseFloat(result) : result.toExponential(5))
                 console.log(result.toString().length <= 9 ? result.toFixed() : result.toExponential())
                 $('.clip').append(add_clip(`${$('.input').val()}${from}`, `${result}${to}`, from, to))
