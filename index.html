@@ -303,7 +303,7 @@
             if ($('.calc').data('type') == 'norm') {
                 let reslt = eval($('.input').val())
                 console.log(reslt)
-                $('.output').text(parseFloat(reslt).toString().length <= 9 || !parseFloat(reslt).toString().includes('e') ? parseFloat(reslt): reslt.toExponential(5))
+                $('.output').text(parseFloat(reslt).toString().length <= 9 && !parseFloat(reslt).toString().includes('e') ? parseFloat(reslt): reslt.toExponential(5))
                 $('.clip').append(add_clip($('.input').val(), reslt, 'Decimal', 'Decimal'))
                 reslt = '';
             } else {
@@ -316,7 +316,7 @@
                 let to_op = eval(roleToMA[to].replace('x', parseInt($('#se-to option:selected').data('plus'))).replace('z', from_op))
                 let result = from === 'd' ? first : to_op
                 console.error(result)
-                $('.output').text(parseFloat(result).toString().length <= 9 || !parseFloat(result).toString().includes('e') ?parseFloat(result) : result.toExponential(5))
+                $('.output').text(parseFloat(result).toString().length <= 9 && !parseFloat(result).toString().includes('e') ?parseFloat(result) : result.toExponential(5))
                 console.log(result.toString().length <= 9 ? result.toFixed() : result.toExponential())
                 $('.clip').append(add_clip(`${$('.input').val()}${from}`, `${result}${to}`, from, to))
                 first = '', from = '', to = '', from_op = '', to_op = '', result = ''
