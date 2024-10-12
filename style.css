@@ -117,6 +117,7 @@ select{
     font-size: 47px;
     font-weight: 100;
     color: white;
+    overflow-x: auto;
 }
 .cont{
     display: flex;
@@ -137,4 +138,16 @@ select{
     .clip{
         scale: 0.8;
     }
+}
+.output::-webkit-scrollbar{
+    width:2px;
+    height:2px;
+}
+.output::-webkit-scrollbar-track{
+    background:black;
+    
+}
+.output::-webkit-scrollbar-thumb{
+    background:white;
+    
 }
